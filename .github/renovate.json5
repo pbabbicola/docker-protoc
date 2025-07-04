@@ -271,6 +271,5 @@
       automerge: true,
       automergeType: "pr"
     }
-  ],
-  "includeForks": true
+  ]
 }
