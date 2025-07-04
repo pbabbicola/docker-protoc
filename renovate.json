@@ -14,5 +14,5 @@
     ],
     "timezone": "Europe/Berlin",
     "configWarningReuseIssue": false,
-    "includeForks": true
+    "forkProcessing": "enabled"
 }
