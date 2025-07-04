@@ -57,7 +57,7 @@ RUN git clone --depth 1 --shallow-submodules -b v$grpc_version.x --recursive htt
 ARG bazel=/tmp/grpc/tools/bazel
 
 WORKDIR /tmp/grpc
-RUN $bazel build //external:protocol_compiler && \
+RUN $bazel build @com_google_protobuf//:protoc && \
     $bazel build //src/compiler:all && \
     $bazel build //test/cpp/util:grpc_cli
 
@@ -93,7 +93,7 @@ RUN go install github.com/micro/micro/v3/cmd/protoc-gen-micro@latest
 RUN go install github.com/bufbuild/protoc-gen-validate@v${go_bufbuild_pgv_version}
 
 # Add Ruby Sorbet types support (rbi)
-RUN go install github.com/coinbase/protoc-gen-rbi@latest
+RUN go install github.com/sorbet/protoc-gen-rbi@latest
 
 RUN go install github.com/gomatic/renderizer/v2/cmd/renderizer@latest
 
