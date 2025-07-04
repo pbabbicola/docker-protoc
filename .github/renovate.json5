@@ -78,9 +78,9 @@
         "variables.sh$"
       ],
       matchStrings: [
-        "GO_BUFBUILD_PGV_VERSION=\\$\\{GO_BUFBUILD_PGV_VERSION:-(?<currentValue>.*?)\\}\\n"
+        "GO_ENVOYPROXY_PGV_VERSION=\\$\\{GO_ENVOYPROXY_PGV_VERSION:-(?<currentValue>.*?)\\}\\n"
       ],
-      depNameTemplate: "bufbuild/protoc-gen-validate",
+      depNameTemplate: "envoyproxy/protoc-gen-validate",
       datasourceTemplate: "github-releases",
       extractVersionTemplate: "^v(?<version>\\d+\\.\\d+\\.\\d+)"
     },
@@ -236,7 +236,7 @@
       groupSlug: "patch-dependencies"
     },
     {
-      matchPackageNames: ["bufbuild/protoc-gen-validate", "protocolbuffers/protobuf-javascript"],
+      matchPackageNames: ["envoyproxy/protoc-gen-validate", "protocolbuffers/protobuf-javascript"],
       matchUpdateTypes: [
         "minor",
         "patch"

@@ -9,7 +9,7 @@ ARG node_grpc_tools_node_protoc_ts_version
 ARG node_grpc_tools_version
 ARG node_protoc_gen_grpc_web_version
 ARG ts_proto_version
-ARG go_bufbuild_pgv_version
+ARG go_envoyproxy_pgv_version
 ARG go_mwitkow_gpv_version
 ARG go_protoc_gen_go_version
 ARG go_protoc_gen_go_grpc_version
@@ -24,7 +24,7 @@ ARG grpc_gateway_version
 ARG grpc_java_version
 ARG grpc_web_version
 ARG scala_pb_version
-ARG go_bufbuild_pgv_version
+ARG go_envoyproxy_pgv_version
 ARG go_mwitkow_gpv_version
 ARG go_protoc_gen_go_version
 ARG go_protoc_gen_go_grpc_version
@@ -68,9 +68,9 @@ WORKDIR /tmp/protobuf-javascript
 # RUN $bazel build --enable_bzlmod //generator:protoc-gen-js
 
 WORKDIR /tmp
-# Install protoc required by bufbuild/protoc-gen-validate package
+# Install protoc required by envoyproxy/protoc-gen-validate package
 RUN cp -a /tmp/grpc/bazel-bin/external/com_google_protobuf/. /usr/local/bin/
-# Copy well known proto files required by bufbuild/protoc-gen-validate package
+# Copy well known proto files required by envoyproxy/protoc-gen-validate package
 RUN mkdir -p /usr/local/include/google/protobuf && \
     cp -a /tmp/grpc/bazel-grpc/external/com_google_protobuf/src/google/protobuf/. /usr/local/include/google/protobuf/
 
@@ -90,7 +90,7 @@ RUN go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
 
 RUN go install github.com/micro/micro/v3/cmd/protoc-gen-micro@latest
 
-RUN go install github.com/bufbuild/protoc-gen-validate@v${go_bufbuild_pgv_version}
+RUN go install github.com/envoyproxy/protoc-gen-validate@v${go_envoyproxy_pgv_version}
 
 # Add Ruby Sorbet types support (rbi)
 RUN go install github.com/sorbet/protoc-gen-rbi@latest
@@ -126,7 +126,7 @@ ARG node_grpc_tools_version
 ARG node_protoc_gen_grpc_web_version
 ARG ts_proto_version
 
-ARG go_bufbuild_pgv_version
+ARG go_envoyproxy_pgv_version
 ARG go_mwitkow_gpv_version
 
 RUN mkdir -p /usr/share/man/man1
@@ -174,7 +174,7 @@ COPY --from=build /tmp/protoc-gen-scala /usr/local/bin/
 
 COPY --from=build /go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway/v2@${grpc_gateway_version}/protoc-gen-openapiv2/options /opt/include/protoc-gen-openapiv2/options/
 
-COPY --from=build /go/pkg/mod/github.com/bufbuild/protoc-gen-validate@v${go_bufbuild_pgv_version}/ /opt/include/
+COPY --from=build /go/pkg/mod/github.com/envoyproxy/protoc-gen-validate@v${go_envoyproxy_pgv_version}/ /opt/include/
 
 COPY --from=build /go/pkg/mod/github.com/mwitkow/go-proto-validators@v${go_mwitkow_gpv_version}/ /opt/include/github.com/mwitkow/go-proto-validators/
 
