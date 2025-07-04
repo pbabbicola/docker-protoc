@@ -270,6 +270,7 @@
       ],
       automerge: true,
       automergeType: "pr"
-    }
+    },
+    "forkProcessing": "enabled"
   ]
 }
