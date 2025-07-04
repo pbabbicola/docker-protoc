@@ -163,7 +163,7 @@ COPY --from=build /tmp/grpc/bazel-bin/src/compiler/ /usr/local/bin/
 # Copy protoc java plugin
 COPY --from=build /tmp/grpc-java/bazel-bin/compiler/ /usr/local/bin/
 # Copy protoc js plugin
-COPY --from=build /tmp/protobuf-javascript/bazel-bin/generator/protoc-gen-js /usr/local/bin/
+# COPY --from=build /tmp/protobuf-javascript/bazel-bin/generator/protoc-gen-js /usr/local/bin/
 # Copy grpc_cli
 COPY --from=build /tmp/grpc/bazel-bin/test/cpp/util/ /usr/local/bin/
 
