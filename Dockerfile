@@ -3,7 +3,6 @@ ARG go_version
 ARG grpc_version
 ARG grpc_gateway_version
 ARG grpc_java_version
-ARG uber_prototool_version
 ARG scala_pb_version
 ARG node_version
 ARG node_grpc_tools_node_protoc_ts_version
@@ -27,7 +26,6 @@ ARG grpc_web_version
 ARG scala_pb_version
 ARG go_envoyproxy_pgv_version
 ARG go_mwitkow_gpv_version
-ARG uber_prototool_version
 ARG go_protoc_gen_go_version
 ARG go_protoc_gen_go_grpc_version
 ARG mypy_version
@@ -59,7 +57,7 @@ RUN git clone --depth 1 --shallow-submodules -b v$grpc_version.x --recursive htt
 ARG bazel=/tmp/grpc/tools/bazel
 
 WORKDIR /tmp/grpc
-RUN $bazel build //external:protocol_compiler && \
+RUN $bazel build @com_google_protobuf//:protoc && \
     $bazel build //src/compiler:all && \
     $bazel build //test/cpp/util:grpc_cli
 
@@ -67,7 +65,7 @@ WORKDIR /tmp/grpc-java
 RUN $bazel build //compiler:grpc_java_plugin
 
 WORKDIR /tmp/protobuf-javascript
-RUN $bazel build //generator:protoc-gen-js
+# RUN $bazel build --enable_bzlmod //generator:protoc-gen-js
 
 WORKDIR /tmp
 # Install protoc required by envoyproxy/protoc-gen-validate package
@@ -75,11 +73,6 @@ RUN cp -a /tmp/grpc/bazel-bin/external/com_google_protobuf/. /usr/local/bin/
 # Copy well known proto files required by envoyproxy/protoc-gen-validate package
 RUN mkdir -p /usr/local/include/google/protobuf && \
     cp -a /tmp/grpc/bazel-grpc/external/com_google_protobuf/src/google/protobuf/. /usr/local/include/google/protobuf/
-
-WORKDIR /tmp
-RUN curl -fsSL "https://github.com/uber/prototool/releases/download/v${uber_prototool_version}/prototool-$(uname -s)-$(uname -m)" \
-    -o /usr/local/bin/prototool && \
-    chmod +x /usr/local/bin/prototool
 
 # go install go-related bins
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${go_protoc_gen_go_grpc_version}
@@ -100,7 +93,7 @@ RUN go install github.com/micro/micro/v3/cmd/protoc-gen-micro@latest
 RUN go install github.com/envoyproxy/protoc-gen-validate@v${go_envoyproxy_pgv_version}
 
 # Add Ruby Sorbet types support (rbi)
-RUN go install github.com/coinbase/protoc-gen-rbi@latest
+RUN go install github.com/sorbet/protoc-gen-rbi@latest
 
 RUN go install github.com/gomatic/renderizer/v2/cmd/renderizer@latest
 
@@ -174,7 +167,6 @@ COPY --from=build /tmp/protobuf-javascript/bazel-bin/generator/protoc-gen-js /us
 # Copy grpc_cli
 COPY --from=build /tmp/grpc/bazel-bin/test/cpp/util/ /usr/local/bin/
 
-COPY --from=build /usr/local/bin/prototool /usr/local/bin/prototool
 COPY --from=build /go/bin/* /usr/local/bin/
 COPY --from=build /tmp/grpc_web_plugin /usr/local/bin/grpc_web_plugin
 
@@ -200,10 +192,6 @@ ENTRYPOINT [ "entrypoint.sh" ]
 # protoc
 FROM protoc-all AS protoc
 ENTRYPOINT [ "protoc", "-I/opt/include" ]
-
-# prototool
-FROM protoc-all AS prototool
-ENTRYPOINT [ "prototool" ]
 
 # grpc-cli
 FROM protoc-all as grpc-cli

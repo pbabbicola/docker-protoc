@@ -17,7 +17,7 @@ printUsage() {
     echo " --with-gateway                                   Generate grpc-gateway files (experimental)."
     echo " --with-docs FORMAT                               Generate documentation (FORMAT is optional - see https://github.com/pseudomuto/protoc-gen-doc#invoking-the-plugin)"
     echo " --with-pyi                                       Generate mypy stub files (.pyi files) - see https://github.com/nipunn1313/mypy-protobuf"
-    echo " --with-rbi                                       Generate Sorbet type declaration files (.rbi files) - see https://github.com/coinbase/protoc-gen-rbi"
+    echo " --with-rbi                                       Generate Sorbet type declaration files (.rbi files) - see https://github.com/sorbet/protoc-gen-rbi"
     echo " --with-typescript                                Generate TypeScript declaration files (.d.ts files) - see https://github.com/improbable-eng/ts-protoc-gen#readme"
     echo " --with-validator                                 Generate validations for (${VALIDATOR_SUPPORTED_LANGUAGES[@]}) - see https://github.com/envoyproxy/protoc-gen-validate"
     echo " --validator-source-relative                      Make the output dirctory for protoc-gen-validate 'source relative' - see https://github.com/envoyproxy/protoc-gen-validate#go"

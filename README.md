@@ -5,7 +5,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/namely/protoc-all?style=flat-square)](https://hub.docker.com/r/namely/protoc-all)
 
 This repository contains support for various Docker images that wrap `protoc`,
-`prototool`, `grpc_cli` commands with [gRPC](https://github.com/grpc/grpc) support
+`grpc_cli` commands with [gRPC](https://github.com/grpc/grpc) support
 in a variety of languages removing the need to install and manage these commands locally.
 It relies on setting a simple volume to the docker container,
 usually mapping the current directory to `/defs`, and specifying the file and
@@ -15,7 +15,6 @@ language you want to generate.
 
 *   Docker images for:
     *   `protoc` with `namely/protoc` (automatically includes `/usr/local/include`)
-    *   [Uber's Prototool](https://github.com/uber/prototool) with `namely/prototool`
     *   A custom generation script to facilitate common use-cases with `namely/protoc-all` (see below)
     *   `grpc_cli` with `namely/grpc-cli`
     *   [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway) using a custom go-based server with `namely/gen-grpc-gateway`
@@ -37,7 +36,7 @@ If you're having trouble, see [Docker troubleshooting](#docker-troubleshooting) 
 
 ## Tag Conventions
 
-For `protoc`, `grpc_cli` and `prototool` a pattern of `<GRPC_VERSION>_<CONTAINER_VERSION>` is used for all images (or `<GRPC_VERSION>_<CONTAINER_VERSION>-rc.<PRERELEASE_NUMBER>`) for pre-releases).
+For `protoc`, `grpc_cli` and a pattern of `<GRPC_VERSION>_<CONTAINER_VERSION>` is used for all images (or `<GRPC_VERSION>_<CONTAINER_VERSION>-rc.<PRERELEASE_NUMBER>`) for pre-releases).
 Example is `namely/protoc-all:1.15_0` for gRPC version `1.15` (or `namely/protoc-all:1.15_0-rc.1` for a pre-release). The `latest` tag will always point to the most recent version.
 
 ## Usage

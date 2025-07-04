@@ -15,7 +15,6 @@ for build in ${BUILDS[@]}; do
         --build-arg grpc_gateway_version="${GRPC_GATEWAY_VERSION}" \
         --build-arg go_version="${GO_VERSION}" \
         --build-arg protobuf_js_version="${PROTOBUF_JS_VERSION}" \
-        --build-arg uber_prototool_version="${UBER_PROTOTOOL_VERSION}" \
         --build-arg scala_pb_version="${SCALA_PB_VERSION}" \
         --build-arg mypy_version="${MYPY_VERSION}" \
         --build-arg node_version="${NODE_VERSION}" \
