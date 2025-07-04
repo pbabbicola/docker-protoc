@@ -65,7 +65,7 @@ WORKDIR /tmp/grpc-java
 RUN $bazel build //compiler:grpc_java_plugin
 
 WORKDIR /tmp/protobuf-javascript
-RUN $bazel build //generator:protoc-gen-js
+# RUN $bazel build --enable_bzlmod //generator:protoc-gen-js
 
 WORKDIR /tmp
 # Install protoc required by bufbuild/protoc-gen-validate package
