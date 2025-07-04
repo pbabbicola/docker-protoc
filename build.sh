@@ -21,7 +21,7 @@ for build in ${BUILDS[@]}; do
         --build-arg node_grpc_tools_node_protoc_ts_version="${NODE_GRPC_TOOLS_NODE_PROTOC_TS_VERSION}" \
         --build-arg node_grpc_tools_version="${NODE_GRPC_TOOLS_VERSION}" \
         --build-arg node_protoc_gen_grpc_web_version="${NODE_PROTOC_GEN_GRPC_WEB_VERSION}" \
-        --build-arg go_bufbuild_pgv_version="${GO_ENVOYPROXY_PGV_VERSION}" \
+        --build-arg go_envoyproxy_pgv_version="${GO_ENVOYPROXY_PGV_VERSION}" \
         --build-arg go_mwitkow_gpv_version="${GO_MWITKOW_GPV_VERSION}" \
         --build-arg ts_proto_version="${TS_PROTO_VERSION}" \
         --build-arg go_protoc_gen_go_version="${GO_PROTOC_GEN_GO_VERSION}" \
