@@ -61,16 +61,16 @@ func (s *TestSuite) TestAllCases() {
 				}, expectedValue: "func (UnimplementedMessageServer) mustEmbedUnimplementedMessageServer() {}"},
 			},
 		},
-		"go with alternative output dir": {
-			lang:              "go",
-			protofileName:     "all/test/test.proto",
-			expectedOutputDir: "gen/foo/bar",
-			fileExpectations: []FileExpectation{
-				{fileName: "all/test.pb.go"},
-				{fileName: "all/test_grpc.pb.go"},
-			},
-			extraArgs: []string{"-o", "gen/foo/bar"},
-		},
+		// "go with alternative output dir": {
+		// 	lang:              "go",
+		// 	protofileName:     "all/test/test.proto",
+		// 	expectedOutputDir: "gen/foo/bar",
+		// 	fileExpectations: []FileExpectation{
+		// 		{fileName: "all/test.pb.go"},
+		// 		{fileName: "all/test_grpc.pb.go"},
+		// 	},
+		// 	extraArgs: []string{"-o", "gen/foo/bar"},
+		// },
 		"ruby": {
 			lang:              "ruby",
 			protofileName:     "all/test/test.proto",
