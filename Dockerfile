@@ -56,6 +56,8 @@ RUN git clone --depth 1 --shallow-submodules -b v$grpc_version.x --recursive htt
 
 ARG bazel=/tmp/grpc/tools/bazel
 
+ENV JAVA_TOOL_OPTIONS="-XX:UseSVE=0"
+
 WORKDIR /tmp/grpc
 RUN $bazel build @com_google_protobuf//:protoc && \
     $bazel build //src/compiler:all && \
