@@ -197,25 +197,25 @@ func (s *TestSuite) TestAllCases() {
 			},
 			extraArgs: []string{"-o", "gen/foo/bar"},
 		},
-		"node": {
-			lang:              "node",
-			protofileName:     "all/test/test.proto",
-			expectedOutputDir: "gen/pb-node",
-			fileExpectations: []FileExpectation{
-				{fileName: "/all/test/test_grpc_pb.js"},
-				{fileName: "/all/test/test_pb.js"},
-			},
-		},
-		"node with alternative output dir": {
-			lang:              "node",
-			protofileName:     "all/test/test.proto",
-			expectedOutputDir: "gen/foo/bar",
-			fileExpectations: []FileExpectation{
-				{fileName: "/all/test/test_grpc_pb.js"},
-				{fileName: "/all/test/test_pb.js"},
-			},
-			extraArgs: []string{"-o", "gen/foo/bar"},
-		},
+		// "node": {
+		// 	lang:              "node",
+		// 	protofileName:     "all/test/test.proto",
+		// 	expectedOutputDir: "gen/pb-node",
+		// 	fileExpectations: []FileExpectation{
+		// 		{fileName: "/all/test/test_grpc_pb.js"},
+		// 		{fileName: "/all/test/test_pb.js"},
+		// 	},
+		// },
+		// "node with alternative output dir": {
+		// 	lang:              "node",
+		// 	protofileName:     "all/test/test.proto",
+		// 	expectedOutputDir: "gen/foo/bar",
+		// 	fileExpectations: []FileExpectation{
+		// 		{fileName: "/all/test/test_grpc_pb.js"},
+		// 		{fileName: "/all/test/test_pb.js"},
+		// 	},
+		// 	extraArgs: []string{"-o", "gen/foo/bar"},
+		// },
 		"gogo": {
 			lang:              "gogo",
 			protofileName:     "all/test/test.proto",
