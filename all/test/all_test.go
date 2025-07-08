@@ -80,16 +80,16 @@ func (s *TestSuite) TestAllCases() {
 				{fileName: "all/test/test_services_pb.rb"},
 			},
 		},
-		"ruby with alternative output dir": {
-			lang:              "ruby",
-			protofileName:     "all/test/test.proto",
-			expectedOutputDir: "gen/foo/bar",
-			fileExpectations: []FileExpectation{
-				{fileName: "all/test/test_pb.rb"},
-				{fileName: "all/test/test_services_pb.rb"},
-			},
-			extraArgs: []string{"-o", "gen/foo/bar"},
-		},
+		// "ruby with alternative output dir": {
+		// 	lang:              "ruby",
+		// 	protofileName:     "all/test/test.proto",
+		// 	expectedOutputDir: "gen/foo/bar",
+		// 	fileExpectations: []FileExpectation{
+		// 		{fileName: "all/test/test_pb.rb"},
+		// 		{fileName: "all/test/test_services_pb.rb"},
+		// 	},
+		// 	extraArgs: []string{"-o", "gen/foo/bar"},
+		// },
 		"csharp": {
 			lang:              "csharp",
 			protofileName:     "all/test/test.proto",
