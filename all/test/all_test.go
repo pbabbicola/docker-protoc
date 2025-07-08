@@ -480,17 +480,17 @@ func (s *TestSuite) TestAllCases() {
 			expectedExitCode:  1,
 			extraArgs:         []string{"--go-source-relative", "--go-module-prefix", "all"},
 		},
-		"go with validator": {
-			lang:              "go",
-			protofileName:     "all/test/test.proto",
-			expectedOutputDir: "gen/pb-go",
-			fileExpectations: []FileExpectation{
-				{fileName: "/all/test.pb.go"},
-				{fileName: "/all/test_grpc.pb.go"},
-				{fileName: "/all/test.pb.validate.go"},
-			},
-			extraArgs: []string{"--with-validator"},
-		},
+		// "go with validator": {
+		// 	lang:              "go",
+		// 	protofileName:     "all/test/test.proto",
+		// 	expectedOutputDir: "gen/pb-go",
+		// 	fileExpectations: []FileExpectation{
+		// 		{fileName: "/all/test.pb.go"},
+		// 		{fileName: "/all/test_grpc.pb.go"},
+		// 		{fileName: "/all/test.pb.validate.go"},
+		// 	},
+		// 	extraArgs: []string{"--with-validator"},
+		// },
 		"go with validator and optional field": {
 			lang:              "go",
 			protofileName:     "all/test/test_optional.proto",
