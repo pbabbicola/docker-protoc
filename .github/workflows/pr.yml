@@ -40,11 +40,11 @@ jobs:
       - name: Test
         if: success()
         env:
-          CONTAINER: docker.io/namely/protoc-all:${{ steps.sha_short.outputs.SHA_SHORT }}
+          CONTAINER: docker.io/pbabbicola/protoc-all:${{ steps.sha_short.outputs.SHA_SHORT }}
         run: make test
 
       - name: Test Gateway
         if: success()
         env:
-          CONTAINER: docker.io/namely/gen-grpc-gateway:${{ steps.sha_short.outputs.SHA_SHORT }}
+          CONTAINER: docker.io/pbabbicola/gen-grpc-gateway:${{ steps.sha_short.outputs.SHA_SHORT }}
         run: make test-gwy
