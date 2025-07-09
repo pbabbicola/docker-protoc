@@ -3,7 +3,6 @@ ARG go_version
 ARG grpc_version
 ARG grpc_gateway_version
 ARG grpc_java_version
-ARG uber_prototool_version
 ARG scala_pb_version
 ARG node_version
 ARG node_grpc_tools_node_protoc_ts_version
@@ -27,7 +26,6 @@ ARG grpc_web_version
 ARG scala_pb_version
 ARG go_envoyproxy_pgv_version
 ARG go_mwitkow_gpv_version
-ARG uber_prototool_version
 ARG go_protoc_gen_go_version
 ARG go_protoc_gen_go_grpc_version
 ARG mypy_version
@@ -75,11 +73,6 @@ RUN cp -a /tmp/grpc/bazel-bin/external/com_google_protobuf/. /usr/local/bin/
 # Copy well known proto files required by envoyproxy/protoc-gen-validate package
 RUN mkdir -p /usr/local/include/google/protobuf && \
     cp -a /tmp/grpc/bazel-grpc/external/com_google_protobuf/src/google/protobuf/. /usr/local/include/google/protobuf/
-
-WORKDIR /tmp
-RUN curl -fsSL "https://github.com/uber/prototool/releases/download/v${uber_prototool_version}/prototool-$(uname -s)-$(uname -m)" \
-    -o /usr/local/bin/prototool && \
-    chmod +x /usr/local/bin/prototool
 
 # go install go-related bins
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${go_protoc_gen_go_grpc_version}
@@ -174,7 +167,6 @@ COPY --from=build /tmp/protobuf-javascript/bazel-bin/generator/protoc-gen-js /us
 # Copy grpc_cli
 COPY --from=build /tmp/grpc/bazel-bin/test/cpp/util/ /usr/local/bin/
 
-COPY --from=build /usr/local/bin/prototool /usr/local/bin/prototool
 COPY --from=build /go/bin/* /usr/local/bin/
 COPY --from=build /tmp/grpc_web_plugin /usr/local/bin/grpc_web_plugin
 
@@ -200,10 +192,6 @@ ENTRYPOINT [ "entrypoint.sh" ]
 # protoc
 FROM protoc-all AS protoc
 ENTRYPOINT [ "protoc", "-I/opt/include" ]
-
-# prototool
-FROM protoc-all AS prototool
-ENTRYPOINT [ "prototool" ]
 
 # grpc-cli
 FROM protoc-all as grpc-cli
